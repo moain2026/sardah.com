@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import { Aref_Ruqaa, IBM_Plex_Sans_Arabic, Tajawal } from 'next/font/google';
 import './globals.css';
+import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
+import { HeaderLuxury } from '@/components/layout/HeaderLuxury';
+import { FooterEditorial } from '@/components/layout/FooterEditorial';
 
 // ── Fonts ───────────────────────────────────────────
 // Editorial Arabic display heading
@@ -154,8 +157,19 @@ export default function RootLayout({
       className={`${arefRuqaa.variable} ${ibmPlexArabic.variable} ${tajawal.variable}`}
       suppressHydrationWarning
     >
-      <body className="font-sans antialiased bg-pearl text-onyx min-h-screen">
-        {children}
+      <body className="font-sans antialiased bg-pearl text-onyx min-h-screen flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:start-2 focus:z-[100] focus:bg-onyx focus:text-pearl focus:px-4 focus:py-2 focus:rounded-luxe"
+        >
+          تخطّي إلى المحتوى الرئيسي
+        </a>
+        <AnnouncementBar />
+        <HeaderLuxury />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <FooterEditorial />
       </body>
     </html>
   );
