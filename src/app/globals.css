@@ -1,0 +1,678 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   SARDAH ABAYAS — LUXURY BOUTIQUE FOUNDATION
+   عبايات سردة — أساس بصري فاخر
+   ===================================================== */
+
+@layer base {
+  :root {
+    /* Brand colors as CSS variables */
+    --color-onyx: 8 8 8;
+    --color-charcoal: 21 21 21;
+    --color-soft-black: 31 31 31;
+    --color-pearl: 248 245 239;
+    --color-ivory: 255 253 248;
+    --color-champagne: 200 169 106;
+    --color-muted-gold: 169 135 82;
+    --color-sand: 232 222 208;
+    --color-taupe: 185 168 154;
+    --color-rose: 185 141 136;
+
+    /* Semantic surfaces */
+    --bg-base: var(--color-pearl);
+    --bg-elevated: var(--color-ivory);
+    --bg-dark: var(--color-onyx);
+
+    /* Text */
+    --text-primary: var(--color-onyx);
+    --text-secondary: var(--color-soft-black);
+    --text-muted: var(--color-taupe);
+    --text-on-dark: var(--color-pearl);
+
+    /* Borders */
+    --border-hairline: rgba(8, 8, 8, 0.08);
+    --border-gold: rgba(200, 169, 106, 0.35);
+    --border-on-dark: rgba(248, 245, 239, 0.08);
+
+    /* Layout tokens */
+    --header-h: 72px;
+    --announcement-h: 36px;
+    --container-x: clamp(1rem, 4vw, 2.5rem);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    /* Always RTL */
+    direction: rtl;
+  }
+
+  body {
+    background-color: rgb(var(--color-pearl));
+    color: rgb(var(--text-primary));
+    font-feature-settings: 'kern', 'liga', 'ss01';
+    overflow-x: hidden;
+    /* Subtle warm vignette base */
+    background-image: radial-gradient(
+        ellipse 90% 60% at 50% 0%,
+        rgba(200, 169, 106, 0.05) 0%,
+        rgba(200, 169, 106, 0) 60%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 50% 100%,
+        rgba(8, 8, 8, 0.04) 0%,
+        rgba(8, 8, 8, 0) 65%
+      );
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-onyx));
+    color: rgb(var(--color-champagne));
+  }
+
+  /* Headings — editorial defaults */
+  h1, h2, h3, h4 {
+    color: rgb(var(--text-primary));
+    font-family: var(--font-aref-ruqaa), serif;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+  }
+
+  h5, h6 {
+    color: rgb(var(--text-primary));
+    font-family: var(--font-tajawal), system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  p {
+    line-height: 1.85;
+    color: rgb(var(--text-secondary));
+  }
+
+  /* Smooth focus for accessibility */
+  *:focus-visible {
+    outline: 2px solid rgb(var(--color-champagne));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Default link styles */
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Buttons reset (we style our own) */
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  /* Number input cleanup */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Custom scrollbar — luxury */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--color-pearl));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #C8A96A 0%, #A98752 100%);
+    border-radius: 999px;
+    border: 2px solid rgb(var(--color-pearl));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #D6BB7E 0%, #C8A96A 100%);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* =====================================================
+   COMPONENT UTILITIES — SARDAH PREMIUM
+   ===================================================== */
+
+@layer components {
+  /* ── Containers ───────────────────────────── */
+  .boutique-container {
+    width: 100%;
+    max-width: theme('maxWidth.boutique');
+    margin-inline: auto;
+    padding-inline: var(--container-x);
+  }
+
+  .editorial-container {
+    width: 100%;
+    max-width: theme('maxWidth.editorial');
+    margin-inline: auto;
+    padding-inline: var(--container-x);
+  }
+
+  /* ── Section padding ──────────────────────── */
+  .section-padding {
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+
+  .section-padding-lg {
+    padding-block: clamp(5rem, 10vw, 8rem);
+  }
+
+  /* ── Editorial Heading ────────────────────── */
+  .editorial-heading {
+    font-family: var(--font-aref-ruqaa), serif;
+    font-weight: 700;
+    line-height: 1.1;
+    color: rgb(var(--text-primary));
+    text-wrap: balance;
+  }
+
+  .editorial-eyebrow {
+    font-family: var(--font-tajawal), system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    color: rgb(var(--color-muted-gold));
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .editorial-eyebrow::before,
+  .editorial-eyebrow::after {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(var(--color-champagne)) 50%,
+      transparent 100%
+    );
+  }
+
+  /* ── Gradient text (gold) ─────────────────── */
+  .gradient-text {
+    background: linear-gradient(
+      120deg,
+      #C8A96A 0%,
+      #E5D29A 45%,
+      #A98752 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+  }
+
+  .gradient-text-shimmer {
+    background: linear-gradient(
+      120deg,
+      #C8A96A 0%,
+      #F4E9CC 35%,
+      #E5D29A 50%,
+      #C8A96A 65%,
+      #A98752 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerGold 4s ease-in-out infinite;
+  }
+
+  /* ── Cards / Surfaces ─────────────────────── */
+  .luxury-card {
+    background: rgb(var(--color-ivory));
+    border: 1px solid var(--border-hairline);
+    border-radius: 2px;
+    box-shadow: theme('boxShadow.card');
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .luxury-card:hover {
+    box-shadow: theme('boxShadow.premium');
+    border-color: var(--border-gold);
+    transform: translateY(-2px);
+  }
+
+  .glass-panel {
+    background: rgba(255, 253, 248, 0.72);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 253, 248, 0.5);
+    box-shadow: 0 1px 0 rgba(8, 8, 8, 0.04), 0 12px 40px -10px rgba(8, 8, 8, 0.08);
+  }
+
+  .glass-panel-dark {
+    background: rgba(8, 8, 8, 0.55);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border-on-dark);
+  }
+
+  /* ── Gold accents ─────────────────────────── */
+  .gold-border {
+    border: 1px solid var(--border-gold);
+  }
+
+  .gold-divider {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(200, 169, 106, 0.35) 20%,
+      rgba(200, 169, 106, 0.55) 50%,
+      rgba(200, 169, 106, 0.35) 80%,
+      transparent 100%
+    );
+  }
+
+  .gold-divider-vertical {
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(200, 169, 106, 0.55) 50%,
+      transparent 100%
+    );
+  }
+
+  /* ── Shadows ──────────────────────────────── */
+  .premium-shadow {
+    box-shadow: theme('boxShadow.premium');
+  }
+
+  /* ── Vignettes ────────────────────────────── */
+  .soft-vignette {
+    position: relative;
+  }
+  .soft-vignette::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      rgba(8, 8, 8, 0.35) 100%
+    );
+    pointer-events: none;
+  }
+
+  .editorial-fade::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 8, 8, 0) 0%,
+      rgba(8, 8, 8, 0.1) 35%,
+      rgba(8, 8, 8, 0.85) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Magnetic CTA button ──────────────────── */
+  .magnetic-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.95rem 2.2rem;
+    font-family: var(--font-tajawal), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: rgb(var(--color-pearl));
+    background: rgb(var(--color-onyx));
+    border: 1px solid rgb(var(--color-onyx));
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    isolation: isolate;
+  }
+
+  .magnetic-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(200, 169, 106, 0) 0%,
+      rgba(200, 169, 106, 0.18) 50%,
+      rgba(200, 169, 106, 0) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+  }
+
+  .magnetic-button:hover {
+    border-color: rgb(var(--color-champagne));
+    box-shadow: 0 12px 30px -10px rgba(200, 169, 106, 0.45);
+  }
+
+  .magnetic-button:hover::before {
+    transform: translateX(100%);
+  }
+
+  .magnetic-button-gold {
+    background: linear-gradient(
+      135deg,
+      #C8A96A 0%,
+      #D6BB7E 50%,
+      #A98752 100%
+    );
+    color: rgb(var(--color-onyx));
+    border-color: rgb(var(--color-champagne));
+  }
+
+  .magnetic-button-gold:hover {
+    background: linear-gradient(
+      135deg,
+      #D6BB7E 0%,
+      #E5D29A 50%,
+      #C8A96A 100%
+    );
+    box-shadow: 0 14px 36px -10px rgba(200, 169, 106, 0.6);
+  }
+
+  .magnetic-button-outline {
+    background: transparent;
+    color: rgb(var(--text-primary));
+    border-color: rgba(8, 8, 8, 0.18);
+  }
+
+  .magnetic-button-outline:hover {
+    border-color: rgb(var(--color-onyx));
+    background: rgb(var(--color-onyx));
+    color: rgb(var(--color-pearl));
+  }
+
+  /* Light variant for dark backgrounds */
+  .magnetic-button-light {
+    background: rgb(var(--color-pearl));
+    color: rgb(var(--color-onyx));
+    border-color: rgb(var(--color-pearl));
+  }
+
+  .magnetic-button-light:hover {
+    background: transparent;
+    color: rgb(var(--color-pearl));
+    border-color: rgb(var(--color-champagne));
+  }
+
+  /* ── Product Frame ─────────────────────────── */
+  .product-frame {
+    position: relative;
+    overflow: hidden;
+    background: rgb(var(--color-ivory));
+    border: 1px solid var(--border-hairline);
+    border-radius: 2px;
+    aspect-ratio: 3 / 4;
+    transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .product-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 8, 8, 0) 50%,
+      rgba(8, 8, 8, 0.12) 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 600ms ease;
+  }
+
+  .product-frame:hover::after {
+    opacity: 1;
+  }
+
+  .product-frame:hover {
+    border-color: var(--border-gold);
+    box-shadow: 0 30px 60px -20px rgba(8, 8, 8, 0.18);
+  }
+
+  /* ── Noise texture overlay ────────────────── */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: theme('backgroundImage.noise-overlay');
+    background-size: 200px 200px;
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* ── Pearl paper texture ──────────────────── */
+  .pearl-texture {
+    background-color: rgb(var(--color-pearl));
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(200, 169, 106, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(185, 141, 136, 0.04) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(255, 253, 248, 0.6) 0%, transparent 100%);
+  }
+
+  /* ── Onyx editorial section ───────────────── */
+  .onyx-section {
+    background: linear-gradient(180deg, #080808 0%, #151515 100%);
+    color: rgb(var(--color-pearl));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .onyx-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(200, 169, 106, 0.4) 50%,
+      transparent 100%
+    );
+  }
+
+  /* ── Chip / pill ──────────────────────────── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgb(var(--text-primary));
+    background: rgb(var(--color-pearl));
+    border: 1px solid var(--border-hairline);
+    border-radius: 999px;
+    transition: all 300ms ease;
+  }
+
+  .chip-gold {
+    color: rgb(var(--color-muted-gold));
+    background: rgba(200, 169, 106, 0.08);
+    border-color: rgba(200, 169, 106, 0.3);
+  }
+
+  .chip-dark {
+    color: rgb(var(--color-pearl));
+    background: rgb(var(--color-onyx));
+    border-color: rgb(var(--color-onyx));
+  }
+
+  /* ── Badges ───────────────────────────────── */
+  .badge-sale {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    font-family: var(--font-tajawal), system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: rgb(var(--color-pearl));
+    background: rgb(var(--color-onyx));
+    border-radius: 1px;
+  }
+
+  .badge-soldout {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: rgb(var(--color-pearl));
+    background: rgba(8, 8, 8, 0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 1px;
+  }
+
+  .badge-new {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: rgb(var(--color-onyx));
+    background: linear-gradient(135deg, #C8A96A 0%, #E5D29A 100%);
+    border-radius: 1px;
+  }
+
+  /* ── Price ────────────────────────────────── */
+  .price-current {
+    font-family: var(--font-tajawal), system-ui, sans-serif;
+    font-weight: 700;
+    color: rgb(var(--text-primary));
+  }
+
+  .price-old {
+    font-family: var(--font-tajawal), system-ui, sans-serif;
+    font-weight: 400;
+    color: rgb(var(--text-muted));
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+
+  /* ── Hover lift ───────────────────────────── */
+  .hover-lift {
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hover-lift:hover {
+    transform: translateY(-3px);
+  }
+
+  /* ── Loading skeleton ─────────────────────── */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(232, 222, 208, 0.3) 0%,
+      rgba(232, 222, 208, 0.6) 50%,
+      rgba(232, 222, 208, 0.3) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmerGold 1.6s ease-in-out infinite;
+  }
+}
+
+/* =====================================================
+   UTILITIES
+   ===================================================== */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Hide scrollbar (utility) */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* RTL-safe horizontal flip helper */
+  .rtl-flip {
+    transform: scaleX(-1);
+  }
+
+  /* Numbers in Latin (for prices) */
+  .nums-latin {
+    font-feature-settings: 'lnum';
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Arabic numerals (Eastern Arabic) */
+  .nums-arabic {
+    font-variant-numeric: normal;
+  }
+
+  /* Aspect ratios for product cards */
+  .aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  .aspect-tall {
+    aspect-ratio: 4 / 5;
+  }
+
+  .aspect-editorial {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Subtle grain on dark backgrounds */
+  .grain-on-dark {
+    position: relative;
+  }
+  .grain-on-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: theme('backgroundImage.noise-overlay');
+    background-size: 180px 180px;
+    opacity: 0.06;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+}
