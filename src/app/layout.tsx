@@ -4,6 +4,7 @@ import './globals.css';
 import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
 import { HeaderLuxury } from '@/components/layout/HeaderLuxury';
 import { FooterEditorial } from '@/components/layout/FooterEditorial';
+import { CartDrawer } from '@/components/cart/CartDrawer';
 
 // ── Fonts ───────────────────────────────────────────
 // Editorial Arabic display heading
@@ -170,6 +171,7 @@ export default function RootLayout({
           {children}
         </main>
         <FooterEditorial />
+        <CartDrawer />
       </body>
     </html>
   );
