@@ -126,7 +126,7 @@ function CollectionTile({
   wide = false,
 }: CollectionTileProps) {
   const href = `/categories/${category.slug}`;
-  const accentBg = category.accentColor || '#1E1812';
+  const accentBg = category.accentColor || '#1F1F1F';
 
   return (
     <motion.div
@@ -160,7 +160,7 @@ function CollectionTile({
             aria-hidden
             className="absolute inset-0"
             style={{
-              backgroundImage: `linear-gradient(135deg, ${accentBg} 0%, #0A0806 95%)`,
+              backgroundImage: `linear-gradient(135deg, ${accentBg} 0%, #080808 95%)`,
             }}
           />
 
