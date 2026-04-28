@@ -57,3 +57,44 @@ export { SizeGuideModal } from './marketing/SizeGuideModal';
 export type { SizeGuideModalProps } from './marketing/SizeGuideModal';
 export { SizeGuideTrigger } from './marketing/SizeGuideTrigger';
 export type { SizeGuideTriggerProps } from './marketing/SizeGuideTrigger';
+
+// Marketing — luxury 2026 upgrade
+export { HeroCinematic } from './marketing/HeroCinematic';
+export type { HeroCinematicProps } from './marketing/HeroCinematic';
+export { EditorialStory } from './marketing/EditorialStory';
+export { CollectionShowcase } from './marketing/CollectionShowcase';
+export type { CollectionShowcaseProps } from './marketing/CollectionShowcase';
+export { FeaturedSelection } from './marketing/FeaturedSelection';
+export type { FeaturedSelectionProps } from './marketing/FeaturedSelection';
+export { MarqueeStatement } from './marketing/MarqueeStatement';
+export type { MarqueeStatementProps } from './marketing/MarqueeStatement';
+export { ReviewsCinema } from './marketing/ReviewsCinema';
+export type { ReviewsCinemaProps } from './marketing/ReviewsCinema';
+export { CtaCinematic } from './marketing/CtaCinematic';
+export type { CtaCinematicProps } from './marketing/CtaCinematic';
+export { SaleSpotlight } from './marketing/SaleSpotlight';
+export type { SaleSpotlightProps } from './marketing/SaleSpotlight';
+
+// Motion primitives
+export {
+  Reveal,
+  SplitText,
+  Marquee,
+  ParallaxImage,
+  MagneticDeep,
+  ScrollProgress,
+  CustomCursor,
+  PageTransition,
+  GrainOverlay,
+  GradientMesh,
+} from './motion';
+export type {
+  RevealProps,
+  RevealDirection,
+  SplitTextProps,
+  MarqueeProps,
+  ParallaxImageProps,
+  MagneticDeepProps,
+  GrainOverlayProps,
+  GradientMeshProps,
+} from './motion';

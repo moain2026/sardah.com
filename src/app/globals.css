@@ -675,4 +675,70 @@
     pointer-events: none;
     mix-blend-mode: screen;
   }
+
+  /* =====================================================
+     LUXURY UPGRADE — cinematic motion utilities
+     ===================================================== */
+
+  /* Hide the native cursor on fine-pointer devices when CustomCursor is active.
+     We keep the system cursor on touch devices and when the user prefers reduced motion. */
+  @media (hover: hover) and (pointer: fine) {
+    .luxe-cursor,
+    .luxe-cursor * {
+      cursor: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .luxe-cursor,
+    .luxe-cursor * {
+      cursor: auto;
+    }
+  }
+
+  /* Generic "premium card" hover halo */
+  .lux-halo {
+    position: relative;
+    isolation: isolate;
+  }
+  .lux-halo::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(200, 169, 106, 0) 0%,
+      rgba(200, 169, 106, 0.25) 50%,
+      rgba(200, 169, 106, 0) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .lux-halo:hover::after {
+    opacity: 1;
+  }
+
+  /* Fluid radial sheen that follows pointer on .lux-sheen elements */
+  .lux-sheen {
+    position: relative;
+    overflow: hidden;
+  }
+  .lux-sheen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      400px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(200, 169, 106, 0.18),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+  }
+  .lux-sheen:hover::before {
+    opacity: 1;
+  }
 }

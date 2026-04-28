@@ -1,10 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
+import { useRef } from 'react';
 import { ArrowLeft, Sparkles } from 'lucide-react';
 import type { Product } from '@/types/product';
 import { cn } from '@/lib/utils';
+import { usePrefersReducedMotion } from '@/lib/use-reduced-motion';
 import { PriceTag } from '@/components/ui/PriceTag';
 import { RatingStars } from '@/components/ui/RatingStars';
 import { ProductBadgeStack } from '@/components/ui/ProductBadge';
@@ -44,6 +51,38 @@ export function ProductCard({
 
   const href = `/products/${product.slug}`;
 
+  // 3D tilt on hover (gently tracks the cursor)
+  const reduced = usePrefersReducedMotion();
+  const cardRef = useRef<HTMLDivElement>(null);
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const rx = useSpring(useTransform(py, [-0.5, 0.5], [4, -4]), {
+    stiffness: 180,
+    damping: 22,
+  });
+  const ry = useSpring(useTransform(px, [-0.5, 0.5], [-5, 5]), {
+    stiffness: 180,
+    damping: 22,
+  });
+
+  function handleMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (reduced) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const dx = (e.clientX - rect.left) / rect.width - 0.5;
+    const dy = (e.clientY - rect.top) / rect.height - 0.5;
+    px.set(dx);
+    py.set(dy);
+    el.style.setProperty('--mx', `${(dx + 0.5) * 100}%`);
+    el.style.setProperty('--my', `${(dy + 0.5) * 100}%`);
+  }
+
+  function handleLeave() {
+    px.set(0);
+    py.set(0);
+  }
+
   return (
     <motion.article
       className={cn(
@@ -62,16 +101,38 @@ export function ProductCard({
     >
       <Link
         href={href}
+        data-cursor="افتحي"
         className="block"
         aria-label={`${product.name} ${product.code}`}
       >
-        {/* Image frame */}
-        <div className="relative">
+        {/* Image frame with luxe sheen + 3D tilt on hover */}
+        <motion.div
+          ref={cardRef}
+          onMouseMove={handleMove}
+          onMouseLeave={handleLeave}
+          className="lux-sheen relative overflow-hidden rounded-luxe transition-transform duration-[700ms] ease-luxe group-hover:-translate-y-1.5"
+          style={
+            reduced
+              ? undefined
+              : {
+                  rotateX: rx,
+                  rotateY: ry,
+                  transformStyle: 'preserve-3d',
+                  perspective: 1000,
+                }
+          }
+        >
           <ProductImageFrame
             image={primaryImage}
             code={product.code}
             priority={priority}
             ratio="portrait"
+          />
+
+          {/* gold sheen sweep on hover */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-l from-transparent via-champagne-300/15 to-transparent transition-transform duration-[1100ms] ease-luxe group-hover:translate-x-full"
           />
 
           {/* Top-right (RTL→ left visually) badges */}
@@ -97,7 +158,7 @@ export function ProductCard({
               طرحة مجانية
             </span>
           )}
-        </div>
+        </motion.div>
 
         {/* Body */}
         <div className="pt-5 pb-2 px-1">
