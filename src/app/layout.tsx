@@ -40,7 +40,7 @@ const tajawal = Tajawal({
 // ── Viewport ────────────────────────────────────────
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F8F5EF' },
+    { media: '(prefers-color-scheme: light)', color: '#EFE5D4' },
     { media: '(prefers-color-scheme: dark)', color: '#080808' },
   ],
   width: 'device-width',
@@ -175,7 +175,6 @@ export default function RootLayout({
         {/* Bespoke cursor (auto-disabled on touch / reduced-motion) */}
         <CustomCursor />
 
-        <AnnouncementBar />
         <HeaderLuxury />
         <main id="main" className="flex-1">
           <PageTransition>{children}</PageTransition>
