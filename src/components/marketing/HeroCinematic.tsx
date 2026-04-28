@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Sparkles } from 'lucide-react';
 import { useRef } from 'react';
 import { SplitText } from '@/components/motion/SplitText';
@@ -73,17 +74,40 @@ export function HeroCinematic({
       style={{ minHeight: 'min(94vh, 920px)' }}
     >
       {/* Backgrounds */}
-      <div className="absolute inset-0 -z-10 bg-onyx-950" />
-      <GradientMesh tone="dark" className="-z-10" />
+      <div className="absolute inset-0 -z-20 bg-onyx-950" />
+
+      {/* Cinematic hero photo (parallax) */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={!reduced ? { scale, opacity } : undefined}
+      >
+        <picture>
+          <source
+            media="(min-width: 768px)"
+            srcSet="/images/hero/hero-cinematic.webp"
+          />
+          <Image
+            src="/images/hero/hero-cinematic-mobile.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-60 md:opacity-65"
+          />
+        </picture>
+      </motion.div>
+
+      <GradientMesh tone="dark" className="-z-10 opacity-40" />
       <GrainOverlay tone="dark" opacity={0.13} fixed={false} zIndex={1} />
 
-      {/* Subtle vignette */}
+      {/* Strong cinematic vignette + dark overlay for legibility */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            'radial-gradient(80% 60% at 50% 30%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 95%)',
+            'linear-gradient(to right, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.55) 45%, rgba(8,8,8,0.30) 100%), radial-gradient(80% 60% at 50% 30%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 95%)',
         }}
       />
 
