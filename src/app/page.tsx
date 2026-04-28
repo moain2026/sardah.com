@@ -3,7 +3,6 @@ import {
   EditorialStory,
   CollectionShowcase,
   FeaturedSelection,
-  MarqueeStatement,
   ReviewsCinema,
   CtaCinematic,
   PolicyStrip,
@@ -44,21 +43,6 @@ export default function HomePage() {
         intro="بوتيك سعودي يصنع العباية بهدوء وعناية: أقمشة كورية مختارة، خياطة نظيفة، وتفاصيل ذهبية تروي حضوراً لا يُنسى."
         primaryCta={{ label: 'افتحي المعرض', href: '/gallery' }}
         secondaryCta={{ label: 'عبايات المناسبات', href: '/categories/occasions' }}
-      />
-
-      {/* 2. Brand statement */}
-      <MarqueeStatement
-        tone="onyx"
-        speed={35}
-        items={[
-          'سردة',
-          'صنع يد',
-          'فخامة بإمضاء سعودي',
-          'خياطة نظيفة',
-          'أقمشة مختارة',
-          'بصمتك الخاصة',
-          'حضور لا يُنسى',
-        ]}
       />
 
       {/* 3. Editorial manifesto */}

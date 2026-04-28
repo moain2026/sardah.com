@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { ArrowLeft, Sparkles } from 'lucide-react';
 import { useRef } from 'react';
 import { SplitText } from '@/components/motion/SplitText';
-import { Marquee } from '@/components/motion/Marquee';
 import { GradientMesh } from '@/components/motion/GradientMesh';
 import { GrainOverlay } from '@/components/motion/GrainOverlay';
 import { MagneticDeep } from '@/components/motion/MagneticDeep';
@@ -21,8 +20,6 @@ export interface HeroCinematicProps {
   intro: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
-  /** Strip of small phrases scrolling under the hero. */
-  marqueeItems?: string[];
 }
 
 /**
@@ -45,14 +42,6 @@ export function HeroCinematic({
   intro,
   primaryCta,
   secondaryCta,
-  marqueeItems = [
-    'أقمشة كورية مختارة',
-    'خياطة نظيفة بإمضاء سردة',
-    'شحن مجاني داخل المملكة',
-    'طرحة مجانية مع تصاميم مختارة',
-    'تصميم بصمة شخصية',
-    'تواصل خاص عبر واتساب',
-  ],
 }: HeroCinematicProps) {
   const reduced = usePrefersReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -277,21 +266,6 @@ export function HeroCinematic({
             </motion.dl>
           </div>
         </div>
-      </div>
-
-      {/* Bottom marquee */}
-      <div className="relative z-10 border-y border-pearl-50/10 bg-onyx-950/60 py-5 backdrop-blur-sm">
-        <Marquee speed={30} gap={4}>
-          {marqueeItems.map((item, i) => (
-            <span
-              key={i}
-              className="flex items-center gap-4 font-tajawal text-[12px] uppercase tracking-[0.3em] text-pearl-200/60"
-            >
-              <span>{item}</span>
-              <span className="text-champagne-300/60">✦</span>
-            </span>
-          ))}
-        </Marquee>
       </div>
 
       {/* Scroll cue */}
