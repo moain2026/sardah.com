@@ -3,15 +3,35 @@
 // UI primitives
 export * from './ui';
 
-// Domain
+// Domain — product
 export { ProductCard } from './product/ProductCard';
 export type { ProductCardProps } from './product/ProductCard';
 export { ProductImageFrame } from './product/ProductImageFrame';
 export type { ProductImageFrameProps } from './product/ProductImageFrame';
+export { ProductGallery } from './product/ProductGallery';
+export type { ProductGalleryProps } from './product/ProductGallery';
+export { ProductPurchasePanel } from './product/ProductPurchasePanel';
+export type { ProductPurchasePanelProps } from './product/ProductPurchasePanel';
+export { CutSelector } from './product/CutSelector';
+export type { CutSelectorProps } from './product/CutSelector';
+export { SizeSelector } from './product/SizeSelector';
+export type { SizeSelectorProps } from './product/SizeSelector';
 
+// Domain — category
 export { CategoryCard } from './category/CategoryCard';
 export type { CategoryCardProps } from './category/CategoryCard';
+export { CategoryToolbar } from './category/CategoryToolbar';
+export type { CategoryToolbarProps } from './category/CategoryToolbar';
 
+// Domain — cart
+export { QuantityStepper } from './cart/QuantityStepper';
+export type { QuantityStepperProps } from './cart/QuantityStepper';
+
+// Navigation
+export { Breadcrumb } from './navigation/Breadcrumb';
+export type { BreadcrumbProps, BreadcrumbItem } from './navigation/Breadcrumb';
+
+// Feedback
 export { ReviewCard } from './feedback/ReviewCard';
 export type { ReviewCardProps } from './feedback/ReviewCard';
 
