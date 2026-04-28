@@ -36,7 +36,6 @@ export type { ReviewCardProps } from './feedback/ReviewCard';
 // Layout
 export { HeaderLuxury } from './layout/HeaderLuxury';
 export { FooterEditorial } from './layout/FooterEditorial';
-export { AnnouncementBar } from './layout/AnnouncementBar';
 export { BottomNav } from './layout/BottomNav';
 
 // Marketing
@@ -57,8 +56,6 @@ export { CollectionShowcase } from './marketing/CollectionShowcase';
 export type { CollectionShowcaseProps } from './marketing/CollectionShowcase';
 export { FeaturedSelection } from './marketing/FeaturedSelection';
 export type { FeaturedSelectionProps } from './marketing/FeaturedSelection';
-export { MarqueeStatement } from './marketing/MarqueeStatement';
-export type { MarqueeStatementProps } from './marketing/MarqueeStatement';
 export { ReviewsCinema } from './marketing/ReviewsCinema';
 export type { ReviewsCinemaProps } from './marketing/ReviewsCinema';
 export { CtaCinematic } from './marketing/CtaCinematic';

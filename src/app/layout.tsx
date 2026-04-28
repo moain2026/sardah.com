@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Aref_Ruqaa, IBM_Plex_Sans_Arabic, Tajawal } from 'next/font/google';
 import './globals.css';
-import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
 import { HeaderLuxury } from '@/components/layout/HeaderLuxury';
 import { FooterEditorial } from '@/components/layout/FooterEditorial';
 import { BottomNav } from '@/components/layout/BottomNav';

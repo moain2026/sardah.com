@@ -15,19 +15,22 @@ import { REVIEWS } from '@/lib/reviews';
  * ───────────────────────────────────────────────────────────────
  *  Sardah Abayas — Homepage (promotional, no commerce)
  * ───────────────────────────────────────────────────────────────
- * A fully cinematic editorial homepage. The site is now a
- * promotional showcase — every action funnels to either the
- * gallery, the contact page, or WhatsApp.
+ * A fully cinematic editorial homepage. The site is a promotional
+ * showcase — every action funnels to either the gallery, the
+ * contact page, or WhatsApp.
  *
- *   1. <HeroCinematic/> — kinetic split-text + parallax hero
- *   2. <MarqueeStatement/> — brand mantra strip
- *   3. <EditorialStory/> — three-pillar manifesto
- *   4. <CollectionShowcase/> — asymmetric magazine-style grid
- *   5. <FeaturedSelection/> — sticky-side featured pieces
- *   6. <PolicyStrip/> — assurances
- *   7. <FeaturedSelection/> — new arrivals (dark)
- *   8. <ReviewsCinema/> — dark customer stories
- *   9. <CtaCinematic/> — final champagne call-to-action
+ *   1. <HeroCinematic/>      — kinetic split-text + parallax hero
+ *   2. <EditorialStory/>     — three-pillar manifesto
+ *   3. <CollectionShowcase/> — asymmetric magazine-style grid
+ *   4. <FeaturedSelection/>  — sticky-side featured pieces
+ *   5. <PolicyStrip/>        — assurances
+ *   6. <FeaturedSelection/>  — new arrivals (dark tone)
+ *   7. <ReviewsCinema/>      — dark customer stories
+ *   8. <CtaCinematic/>       — final champagne call-to-action
+ *
+ * Layered globally by src/app/layout.tsx:
+ *   <HeaderLuxury/> at top, <FooterEditorial/> at bottom,
+ *   <BottomNav/> on mobile (≤1024 px) with floating WhatsApp CTA.
  */
 export default function HomePage() {
   const featured = getFeaturedProducts(4);
