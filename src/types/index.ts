@@ -2,4 +2,4 @@
 export type * from './category';
 export type * from './product';
 export type * from './review';
-export type * from './cart';
+// (cart types removed — Sardah is a promotional site, no cart system)

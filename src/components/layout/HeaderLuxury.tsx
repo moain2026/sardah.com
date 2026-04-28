@@ -3,36 +3,36 @@
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Search, ShoppingBag, Heart, Menu, X, User } from 'lucide-react';
-import { cn, SITE } from '@/lib/utils';
+import { Menu, X, MessageCircle, ArrowLeft } from 'lucide-react';
+import { cn, SITE, buildWhatsAppUrl } from '@/lib/utils';
 import { CATEGORIES } from '@/lib/categories';
-import { useCartCount, useCartHydrated, useCartStore } from '@/store/cartStore';
 
 /**
- * HeaderLuxury — هيدر فاخر
+ * HeaderLuxury — هيدر فاخر (نسخة الموقع الترويجي)
  * ─────────────────────────────────────────────────────
  * Sticky, glass-morphic on scroll. Three-zone RTL layout:
- *   [right] logo + brand    [center] nav    [left] search/wishlist/cart/account
- * Mobile: collapses to a hamburger drawer.
+ *   [right] logo + brand    [center] nav    [left] WhatsApp CTA
+ * Mobile: collapses to a luxe right-side drawer.
  *
- * Connects to cart store for the live count badge.
+ * NO cart / wishlist / account buttons — Sardah is now a
+ * promotional showcase site, with WhatsApp as the only action.
  */
 
 export interface HeaderLuxuryProps {
   className?: string;
 }
 
-const NAV_ITEMS = CATEGORIES.map((c) => ({
-  href: `/categories/${c.slug}`,
-  label: c.name,
-}));
+const PRIMARY_NAV = [
+  { href: '/', label: 'الرئيسية' },
+  { href: '/categories', label: 'التشكيلات' },
+  { href: '/gallery', label: 'المعرض' },
+  { href: '/about', label: 'عن سردة' },
+  { href: '/contact', label: 'تواصلي' },
+] as const;
 
 export function HeaderLuxury({ className }: HeaderLuxuryProps) {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const cartCount = useCartCount();
-  const hydrated = useCartHydrated();
-  const openCart = useCartStore((s) => s.openCart);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -52,6 +52,11 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
       document.body.style.overflow = '';
     };
   }, [drawerOpen]);
+
+  const whatsappUrl = buildWhatsAppUrl(
+    SITE.whatsapp,
+    'مرحباً سردة، أتواصل من الموقع وأحبّ أعرف المزيد عن التشكيلة 🌿',
+  );
 
   return (
     <motion.header
@@ -73,7 +78,7 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
             {/* Mobile hamburger */}
             <button
               type="button"
-              className="md:hidden p-2 -ms-2 rounded-luxe hover:bg-onyx/5 transition-colors"
+              className="lg:hidden -ms-2 rounded-luxe p-2 transition-colors hover:bg-onyx/5"
               aria-label="فتح القائمة"
               onClick={() => setDrawerOpen(true)}
             >
@@ -82,13 +87,13 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
 
             <Link
               href="/"
-              className="group flex items-center gap-2 select-none"
+              className="group flex select-none items-center gap-2"
               aria-label={SITE.name}
             >
-              <span className="font-ruqaa text-2xl md:text-3xl tracking-tight text-onyx group-hover:text-champagne-700 transition-colors duration-500">
+              <span className="font-ruqaa text-2xl tracking-tight text-onyx transition-colors duration-500 group-hover:text-champagne-700 md:text-3xl">
                 سردة
               </span>
-              <span className="hidden sm:inline-block text-[0.6rem] tracking-[0.32em] uppercase text-taupe self-end pb-1">
+              <span className="hidden self-end pb-1 text-[0.6rem] uppercase tracking-[0.32em] text-taupe sm:inline-block">
                 Boutique
               </span>
             </Link>
@@ -96,53 +101,42 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
 
           {/* CENTER — Nav (desktop only) */}
           <nav
-            className="hidden md:flex items-center gap-7 lg:gap-9"
-            aria-label="التصنيفات"
+            className="hidden items-center gap-7 lg:flex lg:gap-9"
+            aria-label="القائمة الرئيسية"
           >
-            {NAV_ITEMS.map((item) => (
+            {PRIMARY_NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="group relative text-sm font-tajawal font-medium text-onyx-700 hover:text-onyx transition-colors duration-300"
+                className="group relative font-tajawal text-sm font-medium text-onyx-700 transition-colors duration-300 hover:text-onyx"
               >
                 {item.label}
-                <span className="absolute -bottom-1.5 inset-x-0 h-px bg-champagne origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-luxe" />
+                <span className="absolute inset-x-0 -bottom-1.5 h-px origin-center scale-x-0 bg-champagne transition-transform duration-500 ease-luxe group-hover:scale-x-100" />
               </Link>
             ))}
           </nav>
 
-          {/* LEFT (RTL end) — Actions */}
-          <div className="flex items-center gap-1.5">
-            <IconButton ariaLabel="بحث">
-              <Search size={18} strokeWidth={1.6} />
-            </IconButton>
-
-            <IconButton ariaLabel="المفضلة" className="hidden sm:inline-flex">
-              <Heart size={18} strokeWidth={1.6} />
-            </IconButton>
-
-            <IconButton ariaLabel="حسابي" className="hidden sm:inline-flex">
-              <User size={18} strokeWidth={1.6} />
-            </IconButton>
-
-            {/* Cart */}
-            <button
-              type="button"
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-onyx/5 transition-colors"
-              aria-label="السلة"
-              onClick={openCart}
+          {/* LEFT (RTL end) — WhatsApp CTA */}
+          <div className="flex items-center">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="واتساب"
+              className="group hidden items-center gap-2 rounded-full border border-champagne-500/40 bg-champagne-400/10 px-5 py-2.5 font-tajawal text-sm font-medium text-onyx-950 transition-all duration-500 hover:bg-champagne-400 hover:shadow-[0_12px_28px_-10px_rgba(200,169,106,0.55)] sm:inline-flex"
             >
-              <ShoppingBag size={18} strokeWidth={1.6} />
-              {hydrated && cartCount > 0 && (
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-0.5 -end-0.5 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-champagne px-1 text-[0.6rem] font-semibold text-onyx nums-latin shadow-soft"
-                >
-                  {cartCount}
-                </motion.span>
-              )}
-            </button>
+              <MessageCircle size={16} strokeWidth={1.8} />
+              <span>تواصل واتساب</span>
+            </a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تواصل واتساب"
+              className="grid h-10 w-10 place-items-center rounded-full bg-champagne-400 text-onyx-950 sm:hidden"
+            >
+              <MessageCircle size={16} strokeWidth={1.8} />
+            </a>
           </div>
         </div>
       </div>
@@ -153,7 +147,7 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
           <>
             <motion.div
               key="overlay"
-              className="fixed inset-0 z-[60] bg-onyx/40 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-[60] bg-onyx/55 backdrop-blur-sm lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -163,21 +157,26 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
             />
             <motion.aside
               key="drawer"
-              className="fixed inset-y-0 start-0 z-[70] w-[86%] max-w-[340px] bg-pearl shadow-editorial md:hidden flex flex-col"
+              className="fixed inset-y-0 start-0 z-[70] flex w-[86%] max-w-[360px] flex-col bg-onyx-950 text-pearl-50 shadow-editorial lg:hidden"
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               role="dialog"
-              aria-label="قائمة التصنيفات"
+              aria-label="القائمة الرئيسية"
               aria-modal="true"
             >
               {/* Drawer header */}
-              <div className="flex items-center justify-between p-5 border-b border-onyx/8">
-                <span className="font-ruqaa text-2xl">سردة</span>
+              <div className="flex items-center justify-between border-b border-pearl-50/10 p-5">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-ruqaa text-3xl text-pearl-50">سردة</span>
+                  <span className="text-[0.6rem] uppercase tracking-[0.32em] text-champagne-300">
+                    Boutique
+                  </span>
+                </div>
                 <button
                   type="button"
-                  className="p-2 -me-2 rounded-luxe hover:bg-onyx/5 transition-colors"
+                  className="-me-2 rounded-luxe p-2 transition-colors hover:bg-pearl-50/10"
                   aria-label="إغلاق القائمة"
                   onClick={() => setDrawerOpen(false)}
                 >
@@ -186,103 +185,91 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
               </div>
 
               {/* Drawer nav */}
-              <nav className="flex-1 overflow-y-auto p-5">
-                <span className="editorial-eyebrow mb-4">التصنيفات</span>
-                <ul className="mt-4 flex flex-col gap-1">
-                  {CATEGORIES.map((c) => (
-                    <li key={c.slug}>
+              <nav className="flex-1 overflow-y-auto p-6">
+                <span className="font-tajawal text-[10px] uppercase tracking-[0.32em] text-champagne-300">
+                  ● القائمة
+                </span>
+                <ul className="mt-5 flex flex-col gap-1">
+                  {PRIMARY_NAV.map((item, i) => (
+                    <motion.li
+                      key={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 0.1 + i * 0.06,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                    >
                       <Link
-                        href={`/categories/${c.slug}`}
+                        href={item.href}
                         onClick={() => setDrawerOpen(false)}
-                        className="flex items-center justify-between rounded-luxe px-3 py-3 hover:bg-onyx/5 transition-colors"
+                        className="group flex items-center justify-between rounded-luxe px-3 py-4 transition-colors hover:bg-pearl-50/10"
                       >
-                        <div>
-                          <span className="font-ruqaa text-lg block">{c.name}</span>
-                          {c.subtitle && (
-                            <span className="text-[0.7rem] text-taupe tracking-wider">
-                              {c.subtitle}
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-champagne-600 text-xl leading-none">‹</span>
+                        <span className="font-ruqaa text-2xl">{item.label}</span>
+                        <ArrowLeft
+                          size={18}
+                          className="text-champagne-300/70 transition-transform duration-500 group-hover:-translate-x-1"
+                        />
                       </Link>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
 
-                <div className="gold-divider my-6" />
+                <div className="my-7 h-px w-full bg-gradient-to-l from-transparent via-champagne-300/30 to-transparent" />
 
-                <ul className="flex flex-col gap-1">
-                  <li>
-                    <Link
-                      href="/about"
-                      onClick={() => setDrawerOpen(false)}
-                      className="block rounded-luxe px-3 py-3 hover:bg-onyx/5 text-sm"
+                <span className="font-tajawal text-[10px] uppercase tracking-[0.32em] text-champagne-300">
+                  ● التشكيلات
+                </span>
+                <ul className="mt-4 flex flex-col gap-1">
+                  {CATEGORIES.map((c, i) => (
+                    <motion.li
+                      key={c.slug}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 0.4 + i * 0.05,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
                     >
-                      عن سردة
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/policies"
-                      onClick={() => setDrawerOpen(false)}
-                      className="block rounded-luxe px-3 py-3 hover:bg-onyx/5 text-sm"
-                    >
-                      سياسات المتجر
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contact"
-                      onClick={() => setDrawerOpen(false)}
-                      className="block rounded-luxe px-3 py-3 hover:bg-onyx/5 text-sm"
-                    >
-                      تواصلي معنا
-                    </Link>
-                  </li>
+                      <Link
+                        href={`/categories/${c.slug}`}
+                        onClick={() => setDrawerOpen(false)}
+                        className="flex items-center justify-between rounded-luxe px-3 py-2.5 text-sm text-pearl-100/85 transition-colors hover:bg-pearl-50/10 hover:text-pearl-50"
+                      >
+                        <span className="font-tajawal">{c.name}</span>
+                        {c.subtitle && (
+                          <span className="text-[0.7rem] tracking-wider text-pearl-200/50">
+                            {c.subtitle}
+                          </span>
+                        )}
+                      </Link>
+                    </motion.li>
+                  ))}
                 </ul>
               </nav>
 
-              {/* Drawer footer */}
-              <div className="p-5 border-t border-onyx/8 text-center">
-                <span className="text-[0.7rem] tracking-[0.28em] uppercase text-taupe">
+              {/* Drawer footer — WhatsApp CTA */}
+              <div className="border-t border-pearl-50/10 p-5">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setDrawerOpen(false)}
+                  className="flex w-full items-center justify-center gap-3 rounded-full bg-champagne-400 px-6 py-4 font-tajawal text-sm font-semibold uppercase tracking-[0.18em] text-onyx-950 transition-shadow duration-500 hover:shadow-[0_18px_40px_-12px_rgba(200,169,106,0.55)]"
+                >
+                  <MessageCircle size={18} strokeWidth={1.8} />
+                  تواصل واتساب
+                </a>
+                <p className="mt-4 text-center font-tajawal text-[10px] uppercase tracking-[0.28em] text-pearl-200/50">
                   Sardah · بوتيك العبايات الفاخرة
-                </span>
+                </p>
               </div>
             </motion.aside>
           </>
         )}
       </AnimatePresence>
     </motion.header>
-  );
-}
-
-/* ─────────────────────────────────────────────────────
-   Tiny icon button helper
-   ───────────────────────────────────────────────────── */
-
-function IconButton({
-  children,
-  ariaLabel,
-  className,
-  onClick,
-}: {
-  children: React.ReactNode;
-  ariaLabel: string;
-  className?: string;
-  onClick?: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      className={cn(
-        'inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-onyx/5 transition-colors',
-        className,
-      )}
-      aria-label={ariaLabel}
-      onClick={onClick}
-    >
-      {children}
-    </button>
   );
 }

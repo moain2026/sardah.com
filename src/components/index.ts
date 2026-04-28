@@ -23,17 +23,7 @@ export type { CategoryCardProps } from './category/CategoryCard';
 export { CategoryToolbar } from './category/CategoryToolbar';
 export type { CategoryToolbarProps } from './category/CategoryToolbar';
 
-// Domain — cart
-export { QuantityStepper } from './cart/QuantityStepper';
-export type { QuantityStepperProps } from './cart/QuantityStepper';
-export { CartDrawer } from './cart/CartDrawer';
-export { CartLineItem } from './cart/CartLineItem';
-export type { CartLineItemProps } from './cart/CartLineItem';
-export { CartSummary } from './cart/CartSummary';
-export type { CartSummaryProps } from './cart/CartSummary';
-export { CartView } from './cart/CartView';
-export { CheckoutForm } from './cart/CheckoutForm';
-export { OrderConfirmationView } from './cart/OrderConfirmationView';
+// (Cart system removed — Sardah is now a promotional showcase site.)
 
 // Navigation
 export { Breadcrumb } from './navigation/Breadcrumb';
@@ -47,6 +37,7 @@ export type { ReviewCardProps } from './feedback/ReviewCard';
 export { HeaderLuxury } from './layout/HeaderLuxury';
 export { FooterEditorial } from './layout/FooterEditorial';
 export { AnnouncementBar } from './layout/AnnouncementBar';
+export { BottomNav } from './layout/BottomNav';
 
 // Marketing
 export { PolicyStrip } from './marketing/PolicyStrip';

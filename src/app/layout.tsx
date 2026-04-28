@@ -4,7 +4,7 @@ import './globals.css';
 import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
 import { HeaderLuxury } from '@/components/layout/HeaderLuxury';
 import { FooterEditorial } from '@/components/layout/FooterEditorial';
-import { CartDrawer } from '@/components/cart/CartDrawer';
+import { BottomNav } from '@/components/layout/BottomNav';
 import { ScrollProgress } from '@/components/motion/ScrollProgress';
 import { CustomCursor } from '@/components/motion/CustomCursor';
 import { PageTransition } from '@/components/motion/PageTransition';
@@ -181,7 +181,9 @@ export default function RootLayout({
           <PageTransition>{children}</PageTransition>
         </main>
         <FooterEditorial />
-        <CartDrawer />
+
+        {/* Mobile bottom nav (auto-hides on desktop) */}
+        <BottomNav />
       </body>
     </html>
   );

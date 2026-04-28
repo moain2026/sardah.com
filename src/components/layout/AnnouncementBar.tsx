@@ -1,8 +1,7 @@
 'use client';
 
-import { Sparkles, Truck, Tag } from 'lucide-react';
+import { Sparkles, Heart, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { SITE } from '@/lib/utils';
 import { cn } from '@/lib/utils';
 
 /**
@@ -18,16 +17,16 @@ export interface AnnouncementBarProps {
 
 const MESSAGES = [
   {
-    icon: Truck,
-    text: 'شحن مجاني داخل المملكة العربية السعودية',
-  },
-  {
-    icon: Tag,
-    text: `استخدمي الكود ${SITE.discountCode} للحصول على شحن مجاني`,
-  },
-  {
     icon: Sparkles,
-    text: 'أقمشة كورية ١٠٠٪ — خياطة نظيفة — طرحة مجانية',
+    text: 'أقمشة كورية مختارة · خياطة نظيفة · بصمتك الخاصة',
+  },
+  {
+    icon: MessageCircle,
+    text: 'لطلبك أو استفسارك — تواصلي معنا عبر واتساب',
+  },
+  {
+    icon: Heart,
+    text: 'بوتيك سعودي يصنع العباية بهدوء وعناية',
   },
 ];
 
