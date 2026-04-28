@@ -9,33 +9,51 @@
 
 @layer base {
   :root {
-    /* Brand colors as CSS variables */
-    --color-onyx: 8 8 8;
-    --color-charcoal: 21 21 21;
-    --color-soft-black: 31 31 31;
-    --color-pearl: 248 245 239;
-    --color-ivory: 255 253 248;
-    --color-champagne: 200 169 106;
-    --color-muted-gold: 169 135 82;
-    --color-sand: 232 222 208;
-    --color-taupe: 185 168 154;
-    --color-rose: 185 141 136;
+    /* ═══════════════════════════════════════════════════
+       SARDAH — ROYAL ESPRESSO PALETTE
+       لوحة "الإسبريسو الملكي" — سينمائية، دافئة، فخمة
+       Inspired by: Bottega Veneta · Tom Ford · Saudi palaces
+
+       Body background = espresso (warm coffee).
+       Editorial bands = warm ivory (cream).
+       Result: alternating cinematic Vogue-Arabia layout.
+       ═══════════════════════════════════════════════════ */
+
+    /* Espresso surfaces (was cold black) */
+    --color-onyx: 21 17 13;          /* #15110D — body bg & dark sections */
+    --color-charcoal: 30 24 18;      /* #1E1812 — elevated dark cards */
+    --color-soft-black: 44 34 24;    /* #2C2218 — dividers */
+
+    /* Warm ivory tones (was cold whites) */
+    --color-pearl: 251 247 236;      /* #FBF7EC — section bg cream */
+    --color-ivory: 248 242 223;      /* #F8F2DF — card on cream */
+    --color-cream: 245 234 212;      /* #F5EAD4 — primary cream */
+
+    /* Champagne gold accents */
+    --color-champagne: 200 169 106;  /* #C8A96A */
+    --color-muted-gold: 169 135 82;  /* #A98752 */
+    --color-bright-gold: 227 192 136;/* #E3C088 */
+
+    /* Earthy + soft */
+    --color-sand: 217 200 168;       /* #D9C8A8 */
+    --color-taupe: 138 119 104;      /* #8A7768 */
+    --color-rose: 184 144 139;       /* #B8908B */
 
     /* Semantic surfaces */
-    --bg-base: var(--color-pearl);
-    --bg-elevated: var(--color-ivory);
+    --bg-base: var(--color-onyx);          /* body = espresso */
+    --bg-elevated: var(--color-charcoal);
     --bg-dark: var(--color-onyx);
 
     /* Text */
-    --text-primary: var(--color-onyx);
-    --text-secondary: var(--color-soft-black);
+    --text-primary: var(--color-pearl);    /* light ivory on dark body */
+    --text-secondary: var(--color-cream);
     --text-muted: var(--color-taupe);
     --text-on-dark: var(--color-pearl);
 
     /* Borders */
-    --border-hairline: rgba(8, 8, 8, 0.08);
+    --border-hairline: rgba(245, 234, 212, 0.08);
     --border-gold: rgba(200, 169, 106, 0.35);
-    --border-on-dark: rgba(248, 245, 239, 0.08);
+    --border-on-dark: rgba(245, 234, 212, 0.08);
 
     /* Layout tokens */
     --header-h: 72px;
@@ -53,27 +71,33 @@
   }
 
   body {
-    background-color: rgb(var(--color-pearl));
+    background-color: rgb(var(--bg-base));
     color: rgb(var(--text-primary));
     font-feature-settings: 'kern', 'liga', 'ss01';
     overflow-x: hidden;
-    /* Subtle warm vignette base */
+    /* Cinematic warm vignette — Royal Espresso */
     background-image: radial-gradient(
         ellipse 90% 60% at 50% 0%,
-        rgba(200, 169, 106, 0.05) 0%,
+        rgba(200, 169, 106, 0.08) 0%,
         rgba(200, 169, 106, 0) 60%
       ),
       radial-gradient(
         ellipse 70% 50% at 50% 100%,
-        rgba(8, 8, 8, 0.04) 0%,
-        rgba(8, 8, 8, 0) 65%
+        rgba(184, 144, 139, 0.05) 0%,
+        rgba(184, 144, 139, 0) 65%
+      ),
+      radial-gradient(
+        ellipse 100% 80% at 0% 50%,
+        rgba(44, 34, 24, 0.4) 0%,
+        rgba(21, 17, 13, 0) 50%
       );
+    background-attachment: fixed;
     min-height: 100vh;
   }
 
   ::selection {
-    background-color: rgb(var(--color-onyx));
-    color: rgb(var(--color-champagne));
+    background-color: rgb(var(--color-champagne));
+    color: rgb(var(--color-onyx));
   }
 
   /* Headings — editorial defaults */
@@ -128,12 +152,12 @@
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: rgb(var(--color-pearl));
+    background: rgb(var(--color-onyx));
   }
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #C8A96A 0%, #A98752 100%);
     border-radius: 999px;
-    border: 2px solid rgb(var(--color-pearl));
+    border: 2px solid rgb(var(--color-onyx));
   }
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #D6BB7E 0%, #C8A96A 100%);
@@ -259,15 +283,15 @@
   }
 
   .glass-panel {
-    background: rgba(255, 253, 248, 0.72);
+    background: rgba(21, 17, 13, 0.72);
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
-    border: 1px solid rgba(255, 253, 248, 0.5);
-    box-shadow: 0 1px 0 rgba(8, 8, 8, 0.04), 0 12px 40px -10px rgba(8, 8, 8, 0.08);
+    border: 1px solid rgba(245, 234, 212, 0.08);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 12px 40px -10px rgba(0, 0, 0, 0.6);
   }
 
   .glass-panel-dark {
-    background: rgba(8, 8, 8, 0.55);
+    background: rgba(15, 12, 9, 0.78);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
     border: 1px solid var(--border-on-dark);
@@ -349,8 +373,8 @@
     font-size: 0.95rem;
     letter-spacing: 0.04em;
     color: rgb(var(--color-pearl));
-    background: rgb(var(--color-onyx));
-    border: 1px solid rgb(var(--color-onyx));
+    background: rgb(var(--color-charcoal));
+    border: 1px solid rgba(200, 169, 106, 0.45);
     border-radius: 2px;
     overflow: hidden;
     transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -406,13 +430,13 @@
   .magnetic-button-outline {
     background: transparent;
     color: rgb(var(--text-primary));
-    border-color: rgba(8, 8, 8, 0.18);
+    border-color: rgba(245, 234, 212, 0.25);
   }
 
   .magnetic-button-outline:hover {
-    border-color: rgb(var(--color-onyx));
-    background: rgb(var(--color-onyx));
-    color: rgb(var(--color-pearl));
+    border-color: rgb(var(--color-champagne));
+    background: rgb(var(--color-champagne));
+    color: rgb(var(--color-onyx));
   }
 
   /* Light variant for dark backgrounds */
@@ -474,18 +498,18 @@
     mix-blend-mode: overlay;
   }
 
-  /* ── Pearl paper texture ──────────────────── */
+  /* ── Espresso paper texture (was pearl) ───── */
   .pearl-texture {
-    background-color: rgb(var(--color-pearl));
+    background-color: rgb(var(--color-charcoal));
     background-image:
-      radial-gradient(circle at 20% 20%, rgba(200, 169, 106, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(185, 141, 136, 0.04) 0%, transparent 50%),
-      linear-gradient(180deg, rgba(255, 253, 248, 0.6) 0%, transparent 100%);
+      radial-gradient(circle at 20% 20%, rgba(200, 169, 106, 0.10) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(184, 144, 139, 0.06) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(44, 34, 24, 0.6) 0%, transparent 100%);
   }
 
   /* ── Onyx editorial section ───────────────── */
   .onyx-section {
-    background: linear-gradient(180deg, #080808 0%, #151515 100%);
+    background: linear-gradient(180deg, #15110D 0%, #1E1812 50%, #2C2218 100%);
     color: rgb(var(--color-pearl));
     position: relative;
     overflow: hidden;
@@ -517,7 +541,7 @@
     font-weight: 500;
     letter-spacing: 0.04em;
     color: rgb(var(--text-primary));
-    background: rgb(var(--color-pearl));
+    background: rgb(var(--color-charcoal));
     border: 1px solid var(--border-hairline);
     border-radius: 999px;
     transition: all 300ms ease;

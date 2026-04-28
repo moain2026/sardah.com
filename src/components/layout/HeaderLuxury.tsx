@@ -78,7 +78,7 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
             {/* Mobile hamburger */}
             <button
               type="button"
-              className="lg:hidden -ms-2 rounded-luxe p-2 transition-colors hover:bg-onyx/5"
+              className="lg:hidden -ms-2 rounded-luxe p-2 text-pearl-200 transition-colors hover:bg-pearl-200/10"
               aria-label="فتح القائمة"
               onClick={() => setDrawerOpen(true)}
             >
@@ -90,10 +90,10 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
               className="group flex select-none items-center gap-2"
               aria-label={SITE.name}
             >
-              <span className="font-ruqaa text-2xl tracking-tight text-onyx transition-colors duration-500 group-hover:text-champagne-700 md:text-3xl">
+              <span className="font-ruqaa text-2xl tracking-tight text-pearl-200 transition-colors duration-500 group-hover:text-champagne-300 md:text-3xl">
                 سردة
               </span>
-              <span className="hidden self-end pb-1 text-[0.6rem] uppercase tracking-[0.32em] text-taupe sm:inline-block">
+              <span className="hidden self-end pb-1 text-[0.6rem] uppercase tracking-[0.32em] text-champagne-500/70 sm:inline-block">
                 Boutique
               </span>
             </Link>
@@ -108,7 +108,7 @@ export function HeaderLuxury({ className }: HeaderLuxuryProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group relative font-tajawal text-sm font-medium text-onyx-700 transition-colors duration-300 hover:text-onyx"
+                className="group relative font-tajawal text-sm font-medium text-pearl-300/85 transition-colors duration-300 hover:text-champagne-300"
               >
                 {item.label}
                 <span className="absolute inset-x-0 -bottom-1.5 h-px origin-center scale-x-0 bg-champagne transition-transform duration-500 ease-luxe group-hover:scale-x-100" />

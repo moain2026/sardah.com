@@ -19,7 +19,7 @@ export const CATEGORIES: readonly Category[] = [
     description:
       'تشكيلة سردة الأنيقة من العبايات اليومية بقصات راقية وأقمشة مختارة بعناية.',
     coverImage: '/images/categories/abayas-cover.webp',
-    accentColor: '#1F1F1F',
+    accentColor: '#1E1812',
     order: 1,
     featured: true,
     seoTitle: 'عبايات سردة — تشكيلة العبايات الأنيقة',
@@ -34,7 +34,7 @@ export const CATEGORIES: readonly Category[] = [
     description:
       'عبايات شتوية بأقمشة دافئة كالكريب الملكي والمخمل، مع تفاصيل التطريز اليدوي.',
     coverImage: '/images/categories/winter-cover.webp',
-    accentColor: '#151515',
+    accentColor: '#15110D',
     order: 2,
     featured: true,
     seoTitle: 'عبايات شتوية — سردة',
@@ -49,7 +49,7 @@ export const CATEGORIES: readonly Category[] = [
     description:
       'تصاميم مميزة للمناسبات بتفاصيل دانتيل وتطريز فاخر تمنحك حضوراً استثنائياً.',
     coverImage: '/images/categories/occasions-cover.webp',
-    accentColor: '#080808',
+    accentColor: '#1A140F',
     order: 3,
     featured: true,
     seoTitle: 'عبايات مناسبات — سردة',
@@ -64,7 +64,7 @@ export const CATEGORIES: readonly Category[] = [
     description:
       'عبايات عملية مريحة للدوام والطلعات اليومية بقصات سهلة وأقمشة عملية.',
     coverImage: '/images/categories/practical-cover.webp',
-    accentColor: '#2c2c2c',
+    accentColor: '#2C2218',
     order: 4,
     featured: true,
     seoTitle: 'عبايات عملية — سردة',
@@ -78,7 +78,7 @@ export const CATEGORIES: readonly Category[] = [
     subtitle: 'لمسة من الحشمة',
     description: 'تشكيلة نقابات أنيقة بخامات ناعمة ومريحة.',
     coverImage: '/images/categories/niqab-cover.webp',
-    accentColor: '#1F1F1F',
+    accentColor: '#100D09',
     order: 5,
     featured: true,
     seoTitle: 'نقابات — سردة',
@@ -92,7 +92,7 @@ export const CATEGORIES: readonly Category[] = [
     subtitle: 'فخامة بأسعار مميزة',
     description: 'فرصتك لاقتناء عبايات سردة بخصومات حصرية لفترة محدودة.',
     coverImage: '/images/categories/sale-cover.webp',
-    accentColor: '#876A40',
+    accentColor: '#5E4B2D',
     order: 6,
     featured: true,
     seoTitle: 'تخفيضات سردة — عبايات بأسعار مميزة',

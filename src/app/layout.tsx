@@ -40,8 +40,8 @@ const tajawal = Tajawal({
 // ── Viewport ────────────────────────────────────────
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F8F5EF' },
-    { media: '(prefers-color-scheme: dark)', color: '#080808' },
+    { media: '(prefers-color-scheme: light)', color: '#15110D' },
+    { media: '(prefers-color-scheme: dark)', color: '#15110D' },
   ],
   width: 'device-width',
   initialScale: 1,
